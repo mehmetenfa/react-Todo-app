@@ -29,7 +29,7 @@ const Todo = ({ todos, setTodos, setEditTodo }) => {
           <input
             type="text"
             value={todo.title}
-            className="w-[15rem] bg-slate-500 p-2 rounded-xl placeholder-white"
+            className={`w-[15rem] bg-slate-500 p-2 rounded-xl placeholder-white ${todo.completed ? "completed" : ""}`}
             onChange={(event) => event.preventDefault()}
           />
           <div className="ml-3">

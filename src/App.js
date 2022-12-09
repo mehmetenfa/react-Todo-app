@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import TodosList from "./components/TodosList";
 
 const App = () => {
+
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editTodo, setEditTodo] = useState(null);
+
+  
 
   return (
     <div className="bg-slate-400 w-screen h-screen">
