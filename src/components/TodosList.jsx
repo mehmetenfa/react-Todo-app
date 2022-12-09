@@ -1,7 +1,7 @@
 import { AiFillCheckCircle, AiFillEdit, AiFillDelete } from "react-icons/ai";
 import React from "react";
 
-const Todo = ({ todos, setTodos }) => {
+const Todo = ({ todos, setTodos, setEditTodo }) => {
   const handleCompleted = (todo) => {
     setTodos(
       todos.map((item) => {
@@ -11,6 +11,11 @@ const Todo = ({ todos, setTodos }) => {
         return item;
       })
     );
+  };
+
+  const handleEdit = ({ id }) => {
+    const findTodo = todos.find((todo) => todo.id === id);
+    setEditTodo(findTodo);
   };
 
   const handleDelete = ({ id }) => {
@@ -29,16 +34,19 @@ const Todo = ({ todos, setTodos }) => {
           />
           <div className="ml-3">
             <button
-              className="text-3xl cursor-pointer"
+              className="text-3xl cursor-pointer hover:scale-75"
               onClick={() => handleCompleted(todo)}
             >
               <AiFillCheckCircle />
             </button>
-            <button className="text-3xl cursor-pointer">
+            <button
+              className="text-3xl cursor-pointer hover:scale-75"
+              onClick={() => handleEdit(todo)}
+            >
               <AiFillEdit />
             </button>
             <button
-              className="text-3xl cursor-pointer"
+              className="text-3xl cursor-pointer hover:scale-75"
               onClick={() => handleDelete(todo)}
             >
               <AiFillDelete />

@@ -1,19 +1,35 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const Form = ({ input, setInput, todos, setTodos }) => {
+const Form = ({ input, setInput, todos, setTodos, editTodo, setEditTodo }) => {
+
+    const updateTodo = (title, id, completed) => {
+        const newTodo = todos.map((todo) => 
+            todo.id === id ? { title, id, completed } : todo 
+        );
+        setTodos(newTodo)
+        setEditTodo("");
+    }
+
   const onInputChange = (event) => {
     setInput(event.target.value);
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    setTodos([...todos, { id: uuidv4(), title: input, completed: false }]);
-    setInput("");
+    if (!editTodo) {
+      setTodos([...todos, { id: uuidv4(), title: input, completed: false }]);
+      setInput("");
+    } else {
+        updateTodo(input, editTodo.id, editTodo.completed)
+    }
   };
 
   return (
-    <form className="bg-slate-700 mt-[5rem] ml-[7rem] flex items-center w-[35rem] h-[5rem] rounded-xl" onSubmit={onFormSubmit}>
+    <form
+      className="bg-slate-700 mt-[5rem] ml-[7rem] flex items-center w-[35rem] h-[5rem] rounded-xl"
+      onSubmit={onFormSubmit}
+    >
       <input
         type="text"
         placeholder="Enter a Todo..."
@@ -23,7 +39,7 @@ const Form = ({ input, setInput, todos, setTodos }) => {
         onChange={onInputChange}
       />
       <button
-        className="bg-cyan-600 text-white w-[5rem] p-2 rounded-xl ml-[4rem]"
+        className="bg-cyan-600 text-white w-[5rem] p-2 rounded-xl ml-[4rem] hover:scale-90"
         type="submit"
       >
         Add
