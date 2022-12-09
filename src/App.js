@@ -8,7 +8,7 @@ const App = () => {
   const [todos, setTodos] = useState([]);
 
   return (
-    <div className="bg-slate-300 w-screen h-screen">
+    <div className="bg-slate-600 w-screen h-screen">
       <div className="app-wrapper">
         <div>
           <Header />

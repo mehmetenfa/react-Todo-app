@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
 
-const Todo = () => {
+const Todo = ({ todos, setTodos }) => {
   return (
-    <div>Todos List</div>
-  )
-}
+    <div>
+      {todos.map((todo) => (
+        <li className="todolist" key={todo.id}>
+          <input
+            type="text"
+            value={todo.title}
+            className="list"
+            onChange={(event) => event.preventDefault()}
+          />
+        </li>
+      ))}
+    </div>
+  );
+};
 
-export default Todo
+export default Todo;
