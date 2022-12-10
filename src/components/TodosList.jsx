@@ -23,13 +23,18 @@ const Todo = ({ todos, setTodos, setEditTodo }) => {
   };
 
   return (
-    <div className="bg-slate-600 flex flex-col items-center h-[30rem] w-[26rem] ml-[11rem] mt-[5rem] rounded-xl">
+    <div
+      className="bg-slate-600 flex flex-col items-center h-[30rem] w-[26rem] ml-[11rem] mt-[5rem] rounded-xl overflow-y-auto scrollbar-thin scrollbar-thumb-black
+    "
+    >
       {todos.map((todo) => (
         <li className="flex m-[1.2rem]" key={todo.id}>
           <input
             type="text"
             value={todo.title}
-            className={`w-[15rem] bg-slate-500 p-2 rounded-xl placeholder-white ${todo.completed ? "completed" : ""}`}
+            className={`w-[15rem] bg-slate-400 p-2 rounded-xl placeholder-white ${
+              todo.completed && "line-through bg-slate-600"
+            }`}
             onChange={(event) => event.preventDefault()}
           />
           <div className="ml-3">
